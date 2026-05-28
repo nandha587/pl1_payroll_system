@@ -1,0 +1,45 @@
+/* ERROR_LOGGER.PLI
+   PL/I sequential batch processing error logging module.
+   Formats and writes standardized validation and reconciliation exceptions.
+*/
+ERROR_LOGGER: PROCEDURE OPTIONS(REENTRANT);
+
+   /* FORMAT_ERROR_LINE
+      Formats a single standard mainframe-style batch exception audit trail line.
+   */
+   FORMAT_ERROR_LINE: PROCEDURE(RUN_ID, EMP_ID, ERR_CODE, DETAILS, OUT_LINE) RETURNS(CHAR(120));
+      DCL RUN_ID          CHAR(12) INONLY;
+      DCL EMP_ID          CHAR(5) INONLY;
+      DCL ERR_CODE        CHAR(7) INONLY;
+      DCL DETAILS         CHAR(50) INONLY;
+      
+      DCL OUT_LINE        CHAR(120) OUTONLY;
+
+      /* Assemble standardized error output record */
+      OUT_LINE = ERR_CODE || ' | ' ||
+                 RUN_ID || ' | ' ||
+                 EMP_ID || ' | ' ||
+                 DETAILS;
+      RETURN(OUT_LINE);
+   END FORMAT_ERROR_LINE;
+
+   /* GET_ERROR_DESC
+      Mainframe-style lookup mapping short error codes to standardized administrative descriptions.
+   */
+   GET_ERROR_DESC: PROCEDURE(ERR_CODE) RETURNS(CHAR(50));
+      DCL ERR_CODE        CHAR(7) INONLY;
+      
+      SELECT(ERR_CODE);
+         WHEN('ERR-101') RETURN('RECONCILIATION: ATTENDANCE RECORD MISSING IN LOG');
+         WHEN('ERR-102') RETURN('RECONCILIATION: MASTER RECORD MISSING (ORPHAN)');
+         WHEN('ERR-103') RETURN('VALIDATION: DUPLICATE EMPLOYEE ID IN MASTER FILE');
+         WHEN('ERR-104') RETURN('VALIDATION: DUPLICATE EMPLOYEE ID IN ATTENDANCE');
+         WHEN('ERR-201') RETURN('VALIDATION: ZERO OR NEGATIVE BASIC SALARY VALUE');
+         WHEN('ERR-202') RETURN('VALIDATION: OUT-OF-BOUNDS TAX PERCENTAGE (0-50%)');
+         WHEN('ERR-203') RETURN('VALIDATION: NEGATIVE OR EXCESSIVE OVERTIME HOURS');
+         WHEN('ERR-204') RETURN('VALIDATION: OUT-OF-BOUNDS ATTENDANCE DAYS (0-31)');
+         OTHERWISE       RETURN('SYSTEM: UNKNOWN BATCH RUNTIME TRANSACTION ERROR');
+      END;
+   END GET_ERROR_DESC;
+
+END ERROR_LOGGER;

@@ -1,0 +1,51 @@
+/* RECONCILIATION.PLI
+   PL/I sequential batch processing reconciliation engine.
+   Compares compound sequential keys (Department + Employee ID)
+   between Employee Master and Attendance streams to prevent desynchronization.
+*/
+RECONCILE_RECORDS: PROCEDURE(EMP_DEPT, EMP_ID, ATT_DEPT, ATT_ID, RECON_STATUS) OPTIONS(REENTRANT);
+   
+   /* Input Parameter Declarations */
+   DCL EMP_DEPT        CHAR(10) INONLY; /* Master Department */
+   DCL EMP_ID          CHAR(5) INONLY;  /* Master Employee ID */
+   DCL ATT_DEPT        CHAR(10) INONLY; /* Attendance Department */
+   DCL ATT_ID          CHAR(5) INONLY;  /* Attendance Employee ID */
+   
+   /* Output Parameter Declarations */
+   DCL RECON_STATUS    CHAR(7) OUTONLY; /* Reconciliation Status */
+
+   /* Internal Compound Keys */
+   DCL EMP_KEY         CHAR(15);
+   DCL ATT_KEY         CHAR(15);
+
+   /* Assemble compound sorting keys */
+   EMP_KEY = EMP_DEPT || EMP_ID;
+   ATT_KEY = ATT_DEPT || ATT_ID;
+
+   /* 1. Balanced Match Case
+      If both sequential keys are identical, matching is successful.
+   */
+   IF EMP_KEY = ATT_KEY THEN DO;
+      RECON_STATUS = 'SUCCESS';
+      RETURN;
+   END;
+
+   /* 2. Missing Attendance Record Exception (Master < Attendance)
+      If the Master compound key is smaller, it means the master record
+      has no corresponding record in the attendance file.
+   */
+   IF EMP_KEY < ATT_KEY THEN DO;
+      RECON_STATUS = 'ERR-101'; /* Employee exists in Master, but has no Attendance */
+      RETURN;
+   END;
+
+   /* 3. Missing Employee Master Exception (Master > Attendance - Orphan Record)
+      If the Master compound key is larger, the current timesheet does not exist
+      in the Employee Master database.
+   */
+   IF EMP_KEY > ATT_KEY THEN DO;
+      RECON_STATUS = 'ERR-102'; /* Attendance exists, but has no Master Employee */
+      RETURN;
+   END;
+
+END RECONCILE_RECORDS;

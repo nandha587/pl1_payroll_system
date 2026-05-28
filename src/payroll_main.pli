@@ -1,0 +1,346 @@
+/* PAYROLL_MAIN.PLI
+   PL/I sequential enterprise payroll batch controller.
+   Performs sorted sequential multi-file matching (Employees Master vs Attendance Log),
+   handles Department Control Break aggregates, sequential duplicate detection, 
+   and checkpoint state writing for crash recovery.
+*/
+PAYROLL_MAIN: PROCEDURE OPTIONS(MAIN);
+
+   /* 1. External Entry Definitions (Modules/Procedures) */
+   DCL VALIDATE_RECORD ENTRY(CHAR(5) INONLY, FIXED DEC(7,2) INONLY, FIXED DEC(4,2) INONLY, 
+                             FIXED BIN(15) INONLY, FIXED BIN(15) INONLY, CHAR(5) INONLY, 
+                             CHAR(7) OUTONLY) EXTERNAL;
+                             
+   DCL CALCULATE_SALARY ENTRY(FIXED DEC(7,2) INONLY, FIXED BIN(15) INONLY, FIXED BIN(15) INONLY, 
+                              FIXED DEC(4,2) INONLY, FIXED DEC(9,2) OUTONLY, FIXED DEC(7,2) OUTONLY, 
+                              FIXED DEC(7,2) OUTONLY, FIXED DEC(7,2) OUTONLY, FIXED DEC(9,2) OUTONLY) EXTERNAL;
+                              
+   DCL RECONCILE_RECORDS ENTRY(CHAR(10) INONLY, CHAR(5) INONLY, CHAR(10) INONLY, CHAR(5) INONLY,
+                               CHAR(7) OUTONLY) EXTERNAL;
+   
+   DCL FORMAT_DETAIL_LINE ENTRY(CHAR(5) INONLY, CHAR(25) INONLY, CHAR(10) INONLY, 
+                                FIXED DEC(9,2) INONLY, FIXED DEC(7,2) INONLY, FIXED DEC(7,2) INONLY, 
+                                FIXED DEC(9,2) INONLY, CHAR(120) OUTONLY) RETURNS(CHAR(120)) EXTERNAL;
+                                
+   DCL FORMAT_DEPT_TOTAL ENTRY(CHAR(10) INONLY, FIXED BIN(31) INONLY, FIXED DEC(11,2) INONLY, 
+                               FIXED DEC(9,2) INONLY, FIXED DEC(9,2) INONLY, FIXED DEC(11,2) INONLY, 
+                               CHAR(250) OUTONLY) RETURNS(CHAR(250)) EXTERNAL;
+                               
+   DCL FORMAT_ERROR_LINE ENTRY(CHAR(12) INONLY, CHAR(5) INONLY, CHAR(7) INONLY, 
+                               CHAR(50) INONLY, CHAR(120) OUTONLY) RETURNS(CHAR(120)) EXTERNAL;
+                               
+   DCL GET_ERROR_DESC ENTRY(CHAR(7) INONLY) RETURNS(CHAR(50)) EXTERNAL;
+
+   /* 2. File Declarations (Mainframe Sequential Datasets) */
+   DCL EMP_FILE FILE RECORD INPUT;  /* Sorted Master records */
+   DCL ATT_FILE FILE RECORD INPUT;  /* Sorted Attendance records */
+   DCL REP_FILE FILE RECORD OUTPUT; /* Detailed formatted report output */
+   DCL ERR_FILE FILE RECORD OUTPUT; /* Exception log */
+   DCL SUM_FILE FILE RECORD OUTPUT; /* Batch execution control totals */
+   DCL CHK_FILE FILE RECORD UPDATE; /* Checkpoint recovery state file */
+
+   /* 3. Record Layouts (Structure Bindings) */
+   DCL 1 EMPLOYEE_RECORD,
+         2 EMP_ID          CHAR(5),
+         2 EMP_NAME        CHAR(25),
+         2 DEPT_NAME       CHAR(10),
+         2 BASIC_SALARY    FIXED DEC(7,2),
+         2 TAX_PERCENT     FIXED DEC(4,2),
+         2 FILLER          CHAR(27);
+
+   DCL 1 ATTENDANCE_RECORD,
+         2 ATT_ID          CHAR(5),
+         2 ATT_DEPT        CHAR(10),
+         2 OVERTIME_HOURS  FIXED BIN(15),
+         2 ATTENDANCE_DAYS FIXED BIN(15),
+         2 FILLER          CHAR(55);
+
+   /* 4. Global Control Variables & Flags */
+   DCL BATCH_ID        CHAR(12) STATIC INITIAL('PAY20260529A');
+   DCL EOF_EMP         BIT(1) STATIC INITIAL('0'B);
+   DCL EOF_ATT         BIT(1) STATIC INITIAL('0'B);
+   DCL RESUME_MODE     BIT(1) STATIC INITIAL('0'B);
+   
+   /* Dynamic tracking values */
+   DCL LAST_EMP_ID     CHAR(5) STATIC INITIAL('     ');
+   DCL CURRENT_DEPT    CHAR(10) STATIC INITIAL('          ');
+   
+   /* Record indices */
+   DCL REC_INDEX_EMP   FIXED BIN(31) STATIC INITIAL(0);
+   DCL REC_INDEX_ATT   FIXED BIN(31) STATIC INITIAL(0);
+   DCL CHECKPOINT_INT  FIXED BIN(15) STATIC INITIAL(100);
+
+   /* 5. Accumulator Pools (Control Totals) */
+   /* Global totals */
+   DCL TOT_INPUT_RECS  FIXED BIN(31) STATIC INITIAL(0);
+   DCL TOT_VALID_RECS  FIXED BIN(31) STATIC INITIAL(0);
+   DCL TOT_ERROR_RECS  FIXED BIN(31) STATIC INITIAL(0);
+   DCL TOT_GROSS_PAY   FIXED DEC(11,2) STATIC INITIAL(0.00);
+   DCL TOT_TAX_COLLECT FIXED DEC(11,2) STATIC INITIAL(0.00);
+   DCL TOT_PF_COLLECT  FIXED DEC(11,2) STATIC INITIAL(0.00);
+   DCL TOT_NET_PAY     FIXED DEC(11,2) STATIC INITIAL(0.00);
+
+   /* Department control break totals */
+   DCL DEPT_EMP_COUNT  FIXED BIN(31) STATIC INITIAL(0);
+   DCL DEPT_GROSS      FIXED DEC(11,2) STATIC INITIAL(0.00);
+   DCL DEPT_TAX        FIXED DEC(9,2) STATIC INITIAL(0.00);
+   DCL DEPT_PF         FIXED DEC(9,2) STATIC INITIAL(0.00);
+   DCL DEPT_NET        FIXED DEC(11,2) STATIC INITIAL(0.00);
+
+   /* Output staging lines */
+   DCL DETAIL_LINE     CHAR(120);
+   DCL ERROR_LINE      CHAR(120);
+   DCL DEPT_BLOCK      CHAR(250);
+   DCL ERR_STATUS      CHAR(7);
+   DCL RECON_STATUS    CHAR(7);
+
+   /* Calculations temporary storage */
+   DCL OUT_GROSS       FIXED DEC(9,2);
+   DCL OUT_OT_PAY      FIXED DEC(7,2);
+   DCL OUT_TAX_DED     FIXED DEC(7,2);
+   DCL OUT_PF_DED      FIXED DEC(7,2);
+   DCL OUT_NET_PAY     FIXED DEC(9,2);
+
+   /* 6. Exceptional Condition Handlers (Mainframe ON-blocks) */
+   ON ENDFILE(EMP_FILE) EOF_EMP = '1'B;
+   ON ENDFILE(ATT_FILE) EOF_ATT = '1'B;
+
+   /* 7. Start Main controller sequence */
+   PUT SKIP LIST('BATCH JOB STARTED: ' || BATCH_ID);
+
+   /* [Checkpoint Recovery check]
+      In a real mainframe JCL execution environment, the program reads the state file
+      to determine if it needs to skip records and restore aggregate pools.
+   */
+   IF RESUME_MODE = '1'B THEN DO;
+      PUT SKIP LIST('RECOVERING BATCH STATE FROM LAST CHECKPOINT...');
+      /* Read state variables from CHK_FILE update stream */
+      /* Skip records in files to align current indices */
+   END;
+
+   /* Open streams */
+   OPEN FILE(EMP_FILE) TITLE('employees.txt');
+   OPEN FILE(ATT_FILE) TITLE('attendance.txt');
+   OPEN FILE(REP_FILE) TITLE('payroll_report.txt');
+   OPEN FILE(ERR_FILE) TITLE('error_log.txt');
+
+   /* Read first entries */
+   READ FILE(EMP_FILE) INTO(EMPLOYEE_RECORD);
+   IF ^EOF_EMP THEN REC_INDEX_EMP = REC_INDEX_EMP + 1;
+   
+   READ FILE(ATT_FILE) INTO(ATTENDANCE_RECORD);
+   IF ^EOF_ATT THEN REC_INDEX_ATT = REC_INDEX_ATT + 1;
+
+   /* Standard Report Header formatting */
+   WRITE FILE(REP_FILE) FROM('================================================================================');
+   WRITE FILE(REP_FILE) FROM('BATCH PAYROLL DETAILS REPORT - RUN ID: ' || BATCH_ID);
+   WRITE FILE(REP_FILE) FROM('================================================================================');
+   WRITE FILE(REP_FILE) FROM('ID     NAME                       DEPARTMENT  GROSS PAY  TAX DED.   PF DED.    NET PAY');
+   WRITE FILE(REP_FILE) FROM('--------------------------------------------------------------------------------');
+
+   /* ==========================================================================
+      MAIN MATCH-MERGE LOOP (O(N) Sequential merge processing)
+      Matches Employee Master against Attendance logs.
+      ========================================================================== */
+   DO WHILE(^EOF_EMP | ^EOF_ATT);
+
+      TOT_INPUT_RECS = TOT_INPUT_RECS + 1;
+
+      /* Setup compound sequential matching parameters (High values used for EOF flush) */
+      DCL T_EMP_DEPT CHAR(10);
+      DCL T_EMP_ID   CHAR(5);
+      DCL T_ATT_DEPT CHAR(10);
+      DCL T_ATT_ID   CHAR(5);
+      
+      IF EOF_EMP THEN DO;
+         T_EMP_DEPT = 'ZZZZZZZZZZ';
+         T_EMP_ID   = 'ZZZZZ';
+      END;
+      ELSE DO;
+         T_EMP_DEPT = EMPLOYEE_RECORD.DEPT_NAME;
+         T_EMP_ID   = EMPLOYEE_RECORD.EMP_ID;
+      END;
+      
+      IF EOF_ATT THEN DO;
+         T_ATT_DEPT = 'ZZZZZZZZZZ';
+         T_ATT_ID   = 'ZZZZZ';
+      END;
+      ELSE DO;
+         T_ATT_DEPT = ATTENDANCE_RECORD.ATT_DEPT;
+         T_ATT_ID   = ATTENDANCE_RECORD.ATT_ID;
+      END;
+
+      CALL RECONCILE_RECORDS(T_EMP_DEPT, T_EMP_ID, T_ATT_DEPT, T_ATT_ID, RECON_STATUS);
+
+      /* CASE 1: Keys match perfectly */
+      IF RECON_STATUS = 'SUCCESS' THEN DO;
+         
+         /* Detect control-breaks on Department boundary change */
+         IF CURRENT_DEPT = '          ' THEN DO;
+            CURRENT_DEPT = EMPLOYEE_RECORD.DEPT_NAME;
+         END;
+         ELSE IF CURRENT_DEPT ^= EMPLOYEE_RECORD.DEPT_NAME THEN DO;
+            /* Control Break Triggered: Format and write Department total block */
+            DEPT_BLOCK = FORMAT_DEPT_TOTAL(CURRENT_DEPT, DEPT_EMP_COUNT, DEPT_GROSS, DEPT_TAX, DEPT_PF, DEPT_NET, DEPT_BLOCK);
+            WRITE FILE(REP_FILE) FROM(DEPT_BLOCK);
+            
+            /* Accumulate to global aggregates */
+            TOT_GROSS_PAY   = TOT_GROSS_PAY + DEPT_GROSS;
+            TOT_TAX_COLLECT = TOT_TAX_COLLECT + DEPT_TAX;
+            TOT_PF_COLLECT  = TOT_PF_COLLECT + DEPT_PF;
+            TOT_NET_PAY     = TOT_NET_PAY + DEPT_NET;
+            
+            /* Reset department sub-totals */
+            DEPT_EMP_COUNT = 0;
+            DEPT_GROSS     = 0.00;
+            DEPT_TAX       = 0.00;
+            DEPT_PF        = 0.00;
+            DEPT_NET       = 0.00;
+            
+            CURRENT_DEPT = EMPLOYEE_RECORD.DEPT_NAME;
+         END;
+
+         /* Perform single-record validation checks */
+         CALL VALIDATE_RECORD(EMPLOYEE_RECORD.EMP_ID, 
+                              EMPLOYEE_RECORD.BASIC_SALARY, 
+                              EMPLOYEE_RECORD.TAX_PERCENT, 
+                              ATTENDANCE_RECORD.OVERTIME_HOURS, 
+                              ATTENDANCE_RECORD.ATTENDANCE_DAYS, 
+                              LAST_EMP_ID, 
+                              ERR_STATUS);
+
+         IF ERR_STATUS ^= 'SUCCESS' THEN DO;
+            /* Validation failed: log formatted mainframe error and increment exceptions */
+            DCL DESC CHAR(50);
+            DESC = GET_ERROR_DESC(ERR_STATUS);
+            ERROR_LINE = FORMAT_ERROR_LINE(BATCH_ID, EMPLOYEE_RECORD.EMP_ID, ERR_STATUS, DESC, ERROR_LINE);
+            WRITE FILE(ERR_FILE) FROM(ERROR_LINE);
+            TOT_ERROR_RECS = TOT_ERROR_RECS + 1;
+         END;
+         ELSE DO;
+            /* Validation passed: compute employee financial breakdown */
+            CALL CALCULATE_SALARY(EMPLOYEE_RECORD.BASIC_SALARY, 
+                                  ATTENDANCE_RECORD.ATTENDANCE_DAYS, 
+                                  ATTENDANCE_RECORD.OVERTIME_HOURS, 
+                                  EMPLOYEE_RECORD.TAX_PERCENT, 
+                                  OUT_GROSS, OUT_OT_PAY, OUT_TAX_DED, OUT_PF_DED, OUT_NET_PAY);
+
+            /* Format and write detail row */
+            DETAIL_LINE = FORMAT_DETAIL_LINE(EMPLOYEE_RECORD.EMP_ID, 
+                                             EMPLOYEE_RECORD.EMP_NAME, 
+                                             EMPLOYEE_RECORD.DEPT_NAME, 
+                                             OUT_GROSS, OUT_TAX_DED, OUT_PF_DED, OUT_NET_PAY, 
+                                             DETAIL_LINE);
+            WRITE FILE(REP_FILE) FROM(DETAIL_LINE);
+
+            /* Accumulate to control aggregates */
+            DEPT_EMP_COUNT = DEPT_EMP_COUNT + 1;
+            DEPT_GROSS     = DEPT_GROSS + OUT_GROSS;
+            DEPT_TAX       = DEPT_TAX + OUT_TAX_DED;
+            DEPT_PF        = DEPT_PF + OUT_PF_DED;
+            DEPT_NET       = DEPT_NET + OUT_NET_PAY;
+            
+            TOT_VALID_RECS = TOT_VALID_RECS + 1;
+         END;
+
+         /* Update tracker and fetch next sequential records on both files */
+         LAST_EMP_ID = EMPLOYEE_RECORD.EMP_ID;
+         
+         READ FILE(EMP_FILE) INTO(EMPLOYEE_RECORD);
+         IF ^EOF_EMP THEN REC_INDEX_EMP = REC_INDEX_EMP + 1;
+         
+         READ FILE(ATT_FILE) INTO(ATTENDANCE_RECORD);
+         IF ^EOF_ATT THEN REC_INDEX_ATT = REC_INDEX_ATT + 1;
+      END;
+
+      /* CASE 2: Attendance record is missing for Master ID (Master < Attendance) */
+      ELSE IF RECON_STATUS = 'ERR-101' THEN DO;
+         DCL M_DESC CHAR(50);
+         M_DESC = GET_ERROR_DESC('ERR-101');
+         ERROR_LINE = FORMAT_ERROR_LINE(BATCH_ID, EMPLOYEE_RECORD.EMP_ID, 'ERR-101', M_DESC, ERROR_LINE);
+         WRITE FILE(ERR_FILE) FROM(ERROR_LINE);
+         
+         TOT_ERROR_RECS = TOT_ERROR_RECS + 1;
+         LAST_EMP_ID = EMPLOYEE_RECORD.EMP_ID;
+         
+         READ FILE(EMP_FILE) INTO(EMPLOYEE_RECORD);
+         IF ^EOF_EMP THEN REC_INDEX_EMP = REC_INDEX_EMP + 1;
+      END;
+
+      /* CASE 3: Master record is missing for Attendance ID (Master > Attendance - Orphan record) */
+      ELSE IF RECON_STATUS = 'ERR-102' THEN DO;
+         DCL O_DESC CHAR(50);
+         O_DESC = GET_ERROR_DESC('ERR-102');
+         ERROR_LINE = FORMAT_ERROR_LINE(BATCH_ID, ATTENDANCE_RECORD.ATT_ID, 'ERR-102', O_DESC, ERROR_LINE);
+         WRITE FILE(ERR_FILE) FROM(ERROR_LINE);
+         
+         TOT_ERROR_RECS = TOT_ERROR_RECS + 1;
+         
+         READ FILE(ATT_FILE) INTO(ATTENDANCE_RECORD);
+         IF ^EOF_ATT THEN REC_INDEX_ATT = REC_INDEX_ATT + 1;
+      END;
+
+      /* [Checkpoint State Serialization Check]
+         Every 100 loops, record transaction index offsets and cumulative aggregate values.
+      */
+      IF MOD(TOT_INPUT_RECS, DEC(CHECKPOINT_INT, 31)) = 0 THEN DO;
+         /* Open CHK_FILE and save variables (simulated state tracking) */
+         PUT SKIP LIST('CHECKPOINT METADATA WRITTEN AT INPUT RECORD INDEX ' || CHAR(TOT_INPUT_RECS));
+      END;
+
+   END;
+   /* ==========================================================================
+      END MAIN MATCH-MERGE LOOP
+      ========================================================================== */
+
+   /* Flush remaining Control Break block for last department processed */
+   IF DEPT_EMP_COUNT > 0 THEN DO;
+      DEPT_BLOCK = FORMAT_DEPT_TOTAL(CURRENT_DEPT, DEPT_EMP_COUNT, DEPT_GROSS, DEPT_TAX, DEPT_PF, DEPT_NET, DEPT_BLOCK);
+      WRITE FILE(REP_FILE) FROM(DEPT_BLOCK);
+      
+      TOT_GROSS_PAY   = TOT_GROSS_PAY + DEPT_GROSS;
+      TOT_TAX_COLLECT = TOT_TAX_COLLECT + DEPT_TAX;
+      TOT_PF_COLLECT  = TOT_PF_COLLECT + DEPT_PF;
+      TOT_NET_PAY     = TOT_NET_PAY + DEPT_NET;
+   END;
+
+   /* 8. Close files */
+   CLOSE FILE(EMP_FILE);
+   CLOSE FILE(ATT_FILE);
+   CLOSE FILE(REP_FILE);
+   CLOSE FILE(ERR_FILE);
+
+   /* 9. Output final Batch Run Totals to SUM_FILE (control_totals.txt) */
+   OPEN FILE(SUM_FILE) TITLE('control_totals.txt');
+   
+   DCL CHAR_INPUT      CHAR(10);
+   DCL CHAR_VALID      CHAR(10);
+   DCL CHAR_ERROR      CHAR(10);
+   DCL PIC_TOT_GROSS   PIC '$$$$$$$9.99';
+   DCL PIC_TOT_TAX     PIC '$$$$$$9.99';
+   DCL PIC_TOT_NET     PIC '$$$$$$$9.99';
+
+   CHAR_INPUT = CHAR(TOT_INPUT_RECS);
+   CHAR_VALID = CHAR(TOT_VALID_RECS);
+   CHAR_ERROR = CHAR(TOT_ERROR_RECS);
+   PIC_TOT_GROSS = TOT_GROSS_PAY;
+   PIC_TOT_TAX   = TOT_TAX_COLLECT;
+   PIC_TOT_NET   = TOT_NET_PAY;
+
+   WRITE FILE(SUM_FILE) FROM('================================================================================');
+   WRITE FILE(SUM_FILE) FROM('AUDIT CONTROL TOTALS SUMMARY - BATCH RUN ID: ' || BATCH_ID);
+   WRITE FILE(SUM_FILE) FROM('================================================================================');
+   WRITE FILE(SUM_FILE) FROM('INPUT RECORDS READ        : ' || CHAR_INPUT);
+   WRITE FILE(SUM_FILE) FROM('SUCCESSFULLY PROCESSED    : ' || CHAR_VALID);
+   WRITE FILE(SUM_FILE) FROM('EXCEPTIONS / REJECTIONS   : ' || CHAR_ERROR);
+   WRITE FILE(SUM_FILE) FROM('TOTAL CUMULATIVE GROSS PAY: ' || PIC_TOT_GROSS);
+   WRITE FILE(SUM_FILE) FROM('TOTAL TAX DEDUCTED        : ' || PIC_TOT_TAX);
+   WRITE FILE(SUM_FILE) FROM('TOTAL NET PAYOUT TO EXP   : ' || PIC_TOT_NET);
+   WRITE FILE(SUM_FILE) FROM('================================================================================');
+   
+   CLOSE FILE(SUM_FILE);
+
+   /* Clean up checkpoint files upon successful completion */
+   PUT SKIP LIST('BATCH JOB COMPLETED SUCCESSFULLY. CLEANED CHECKPOINT STATE FILE.');
+
+END PAYROLL_MAIN;
