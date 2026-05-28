@@ -1,0 +1,533 @@
+================================================================================
+BATCH PAYROLL DETAILS REPORT - RUN ID: PAY20260529A
+================================================================================
+ID     NAME                       DEPARTMENT  GROSS PAY  TAX DED.   PF DED.    NET PAY
+--------------------------------------------------------------------------------
+E0001  Patricia Smith             FINANCE     $ 6416.26   $ 802.03   $ 513.30  $ 5100.92
+E0002  Nancy Brown                FINANCE     $ 6672.02   $1467.84   $ 533.76  $ 4670.42
+E0003  Susan Johnson              FINANCE     $ 2838.59   $ 354.82   $ 227.09  $ 2256.68
+E0004  Karen Smith                FINANCE     $ 6867.61   $1716.90   $ 549.41  $ 4601.30
+E0005  Susan Davis                FINANCE     $ 5357.60   $ 803.64   $ 428.61  $ 4125.35
+E0006  Matthew Garcia             FINANCE     $ 6232.78   $ 934.92   $ 498.62  $ 4799.24
+E0007  Michael Hernandez          FINANCE     $ 2909.84   $ 581.97   $ 232.79  $ 2095.08
+E0008  Sandra Lopez               FINANCE     $ 7044.19   $ 704.42   $ 563.54  $ 5776.24
+E0009  Sarah Brown                FINANCE     $ 8480.83   $1696.17   $ 678.47  $ 6106.20
+E0010  Linda Martin               FINANCE     $ 7945.88   $1191.88   $ 635.67  $ 6118.33
+E0011  Daniel Williams            FINANCE     $ 3090.29   $ 386.29   $ 247.22  $ 2456.78
+E0012  John Davis                 FINANCE     $ 7873.88   $1574.78   $ 629.91  $ 5669.19
+E0013  Christopher Lopez          FINANCE     $ 3337.67   $ 500.65   $ 267.01  $ 2570.01
+E0014  Daniel Williams            FINANCE     $ 6207.25   $ 775.91   $ 496.58  $ 4934.76
+E0015  Jennifer Anderson          FINANCE     $ 5672.37   $1418.09   $ 453.79  $ 3800.49
+E0016  Elizabeth Hernandez        FINANCE     $ 6633.94   $ 663.39   $ 530.72  $ 5439.83
+E0017  Betty Hernandez            FINANCE     $ 5157.92   $ 515.79   $ 412.63  $ 4229.49
+E0018  Mark Hernandez             FINANCE     $ 3990.29   $ 798.06   $ 319.22  $ 2873.01
+E0019  Robert Rodriguez           FINANCE     $ 3821.38   $ 955.34   $ 305.71  $ 2560.32
+E0020  William Jackson            FINANCE     $ 5128.22   $1128.21   $ 410.26  $ 3589.75
+E0021  Elizabeth Jones            FINANCE     $ 5683.46   $ 568.35   $ 454.68  $ 4660.44
+E0022  Sandra Brown               FINANCE     $ 3989.79   $ 498.72   $ 319.18  $ 3171.89
+E0023  Karen Williams             FINANCE     $ 5382.35   $1184.12   $ 430.59  $ 3767.65
+E0024  William Moore              FINANCE     $ 7642.91   $ 764.29   $ 611.43  $ 6267.18
+E0025  Lisa Moore                 FINANCE     $ 6328.62   $1582.16   $ 506.29  $ 4240.18
+E0026  Linda Wilson               FINANCE     $ 3811.48   $ 381.15   $ 304.92  $ 3125.41
+E0027  Thomas Garcia              FINANCE     $ 5987.26   $ 598.73   $ 478.98  $ 4909.55
+E0028  Anthony Taylor             FINANCE     $ 5891.58   $ 736.45   $ 471.33  $ 4683.81
+E0029  Sarah Taylor               FINANCE     $ 8329.58   $1832.51   $ 666.37  $ 5830.70
+E0030  James Brown                FINANCE     $ 7088.21   $1063.23   $ 567.06  $ 5457.92
+E0031  Elizabeth Jackson          FINANCE     $ 9413.60   $ 941.36   $ 753.09  $ 7719.16
+E0032  Anthony Williams           FINANCE     $ 8938.45   $1966.46   $ 715.08  $ 6256.91
+E0033  Robert Thomas              FINANCE     $ 8738.89   $1092.36   $ 699.11  $ 6947.42
+E0034  Sandra Martin              FINANCE     $ 5081.77   $ 635.22   $ 406.54  $ 4040.01
+E0035  Daniel Martinez            FINANCE     $ 5283.24   $1320.81   $ 422.66  $ 3539.77
+E0036  Joseph Taylor              FINANCE     $ 4572.60   $ 571.58   $ 365.81  $ 3635.22
+E0037  David Smith                FINANCE     $ 6132.63   $ 766.58   $ 490.61  $ 4875.44
+E0038  James Williams             FINANCE     $ 5922.84   $ 592.28   $ 473.83  $ 4856.73
+E0039  Mark Johnson               FINANCE     $ 7657.81   $ 765.78   $ 612.62  $ 6279.40
+E0040  William Thomas             FINANCE     $ 4527.45   $ 565.93   $ 362.20  $ 3599.32
+E0041  Charles Thomas             FINANCE     $ 4621.39   $ 924.28   $ 369.71  $ 3327.40
+E0042  Michael Brown              FINANCE     $ 3230.41   $ 646.08   $ 258.43  $ 2325.89
+E0043  Susan Anderson             FINANCE     $ 7661.19   $ 766.12   $ 612.90  $ 6282.18
+E0044  Mary Gonzalez              FINANCE     $ 6342.38   $ 634.24   $ 507.39  $ 5200.75
+E0045  Michael Moore              FINANCE     $ 4940.95   $ 988.19   $ 395.28  $ 3557.48
+E0046  Joseph Davis               FINANCE     $ 8671.27   $ 867.13   $ 693.70  $ 7110.44
+E0047  Patricia Johnson           FINANCE     $ 5246.89   $1154.32   $ 419.75  $ 3672.83
+E0048  Margaret Davis             FINANCE     $ 3468.06   $ 693.61   $ 277.44  $ 2497.00
+E0049  Sandra Gonzalez            FINANCE     $ 7285.08   $ 910.64   $ 582.81  $ 5791.64
+E0051  Daniel Moore               FINANCE     $ 5809.40   $1161.88   $ 464.75  $ 4182.77
+E0052  Linda Miller               FINANCE     $ 9941.65   $2187.16   $ 795.33  $ 6959.16
+E0053  Mary Hernandez             FINANCE     $ 3206.44   $ 705.42   $ 256.52  $ 2244.51
+E0054  Margaret Taylor            FINANCE     $ 3033.60   $ 667.39   $ 242.69  $ 2123.52
+E0055  John Martin                FINANCE     $ 2676.47   $ 334.56   $ 214.12  $ 2127.79
+E0056  Mark Jackson               FINANCE     $ 4011.19   $ 882.46   $ 320.89  $ 2807.83
+E0057  John Wilson                FINANCE     $ 6737.16   $1482.18   $ 538.97  $ 4716.01
+E0058  Margaret Rodriguez         FINANCE     $ 3535.05   $ 883.76   $ 282.80  $ 2368.48
+E0059  William Gonzalez           FINANCE     $ 3387.93   $ 846.98   $ 271.03  $ 2269.92
+E0060  David Williams             FINANCE     $ 2483.28   $ 546.32   $ 198.66  $ 1738.30
+E0061  John Moore                 FINANCE     $ 3564.22   $ 534.63   $ 285.14  $ 2744.45
+E0062  Mark Williams              FINANCE     $ 7311.73   $1096.76   $ 584.94  $ 5630.03
+E0063  Joseph Moore               FINANCE     $ 8153.32   $1793.73   $ 652.27  $ 5707.33
+E0064  James Moore                FINANCE     $ 3820.26   $ 955.07   $ 305.62  $ 2559.58
+E0065  William Brown              FINANCE     $ 7905.08   $1976.27   $ 632.41  $ 5296.41
+E0066  William Martinez           FINANCE     $ 5815.57   $1453.89   $ 465.25  $ 3896.43
+E0067  Lisa Rodriguez             FINANCE     $ 4573.70   $ 686.06   $ 365.90  $ 3521.75
+E0068  Christopher Wilson         FINANCE     $ 6796.45   $ 679.64   $ 543.72  $ 5573.09
+E0069  Matthew Jones              FINANCE     $ 6304.72   $ 945.71   $ 504.38  $ 4854.63
+E0070  Sarah Wilson               FINANCE     $ 5165.59   $ 516.56   $ 413.25  $ 4235.78
+E0071  Sarah Johnson              FINANCE     $ 7571.55   $1665.74   $ 605.72  $ 5300.09
+E0072  Susan Jones                FINANCE     $ 2836.94   $ 425.54   $ 226.96  $ 2184.44
+E0073  Mark Lopez                 FINANCE     $ 3749.78   $ 468.72   $ 299.98  $ 2981.07
+E0074  Barbara Moore              FINANCE     $ 8004.36   $1600.87   $ 640.35  $ 5763.14
+E0075  Margaret Davis             FINANCE     $ 7141.63   $ 892.70   $ 571.33  $ 5677.60
+E0076  Jennifer Hernandez         FINANCE     $ 7746.16   $1549.23   $ 619.69  $ 5577.23
+E0077  William Garcia             FINANCE     $ 6649.59   $ 664.96   $ 531.97  $ 5452.67
+E0078  Sandra Thomas              FINANCE     $ 3845.49   $ 769.10   $ 307.64  $ 2768.76
+E0079  Anthony Davis              FINANCE     $ 3859.34   $ 964.84   $ 308.75  $ 2585.76
+E0080  David Rodriguez            FINANCE     $ 8406.69   $1261.00   $ 672.54  $ 6473.15
+E0081  Richard Moore              FINANCE     $ 4193.72   $ 419.37   $ 335.50  $ 3438.85
+E0082  Jennifer Jackson           FINANCE     $ 6841.15   $1026.17   $ 547.29  $ 5267.69
+E0083  Karen Wilson               FINANCE     $ 5080.91   $ 762.14   $ 406.47  $ 3912.30
+E0084  Thomas Brown               FINANCE     $ 4619.82   $1016.36   $ 369.59  $ 3233.87
+E0085  Mary Wilson                FINANCE     $ 2617.12   $ 575.77   $ 209.37  $ 1831.98
+E0086  Barbara Wilson             FINANCE     $ 3168.69   $ 792.17   $ 253.50  $ 2123.02
+E0087  David Brown                FINANCE     $ 7128.46   $1069.27   $ 570.28  $ 5488.92
+E0088  Lisa Wilson                FINANCE     $ 4798.98   $1199.74   $ 383.92  $ 3215.32
+E0089  Robert Miller              FINANCE     $ 5236.71   $1047.34   $ 418.94  $ 3770.43
+E0090  Karen Jackson              FINANCE     $ 3914.27   $ 861.14   $ 313.14  $ 2739.99
+E0091  Linda Miller               FINANCE     $ 5440.08   $1196.82   $ 435.21  $ 3808.05
+E0092  Joseph Anderson            FINANCE     $ 5621.41   $ 702.68   $ 449.71  $ 4469.02
+E0093  Betty Garcia               FINANCE     $ 7333.07   $1099.96   $ 586.65  $ 5646.46
+E0094  David Williams             FINANCE     $ 8063.17   $1007.90   $ 645.05  $ 6410.22
+E0095  Elizabeth Miller           FINANCE     $ 3432.19   $ 343.22   $ 274.58  $ 2814.40
+E0096  Karen Williams             FINANCE     $ 5321.69   $1330.42   $ 425.74  $ 3565.53
+E0097  Daniel Gonzalez            FINANCE     $ 4658.74   $ 582.34   $ 372.70  $ 3703.70
+E0098  Mark Brown                 FINANCE     $ 7476.08   $ 934.51   $ 598.09  $ 5943.49
+E0099  Joseph Johnson             FINANCE     $ 5744.81   $ 574.48   $ 459.58  $ 4710.74
+E0100  Betty Anderson             FINANCE     $ 6967.51   $1532.85   $ 557.40  $ 4877.25
+E0101  Matthew Anderson           FINANCE     $ 6737.36   $1684.34   $ 538.99  $ 4514.03
+E0102  Anthony Moore              FINANCE     $ 5954.74   $ 744.34   $ 476.38  $ 4734.02
+E0103  Joseph Rodriguez           FINANCE     $ 7488.66   $1872.16   $ 599.09  $ 5017.40
+E0104  Jessica Davis              FINANCE     $ 4548.20   $ 454.82   $ 363.86  $ 3729.52
+E0105  Elizabeth Rodriguez        FINANCE     $ 3976.36   $ 874.80   $ 318.11  $ 2783.45
+================================================================================
+DEPARTMENT SUMMARY: FINANCE     TOTAL PROCESSED: 104       
+  SUBTOTAL GROSS   : $ 589959.21
+  SUBTOTAL TAX     : $ 99288.02
+  SUBTOTAL PF      : $ 47196.74
+  SUBTOTAL NET     : $ 443474.45
+================================================================================
+E0106  Elizabeth Gonzalez         HR          $ 5792.88   $1448.22   $ 463.43  $ 3881.23
+E0107  Susan Wilson               HR          $ 4166.73   $ 833.35   $ 333.34  $ 3000.05
+E0108  Michael Wilson             HR          $ 4864.34   $1070.16   $ 389.15  $ 3405.04
+E0109  Sandra Jackson             HR          $ 4795.88   $ 479.59   $ 383.67  $ 3932.62
+E0110  Matthew Gonzalez           HR          $ 8724.82   $1744.96   $ 697.99  $ 6281.87
+E0111  Betty Martin               HR          $ 7640.41   $1528.08   $ 611.23  $ 5501.09
+E0112  Susan Thomas               HR          $ 3031.21   $ 454.68   $ 242.50  $ 2334.03
+E0113  Nancy Garcia               HR          $ 8764.49   $1095.56   $ 701.16  $ 6967.77
+E0114  James Gonzalez             HR          $ 4951.11   $1237.78   $ 396.09  $ 3317.25
+E0115  Christopher Wilson         HR          $ 2852.85   $ 570.57   $ 228.23  $ 2054.05
+E0116  William Gonzalez           HR          $ 4438.76   $ 887.75   $ 355.10  $ 3195.90
+E0117  Matthew Gonzalez           HR          $ 3695.73   $ 739.15   $ 295.66  $ 2660.92
+E0118  Jessica Smith              HR          $ 6696.10   $ 669.61   $ 535.69  $ 5490.81
+E0119  Christopher Williams       HR          $ 5941.86   $1485.46   $ 475.35  $ 3981.04
+E0120  Elizabeth Miller           HR          $ 6764.71   $1488.24   $ 541.18  $ 4735.30
+E0121  Robert Thomas              HR          $ 6553.78   $1441.83   $ 524.30  $ 4587.64
+E0122  Daniel Rodriguez           HR          $ 8251.33   $1031.42   $ 660.11  $ 6559.81
+E0123  Nancy Brown                HR          $ 6413.43   $ 801.68   $ 513.07  $ 5098.67
+E0124  Charles Smith              HR          $ 9151.29   $2013.28   $ 732.10  $ 6405.90
+E0125  Richard Miller             HR          $ 3056.75   $ 764.19   $ 244.54  $ 2048.02
+E0126  Patricia Martinez          HR          $ 7839.32   $1724.65   $ 627.15  $ 5487.52
+E0127  Betty Jackson              HR          $ 7911.30   $1186.70   $ 632.90  $ 6091.70
+E0128  Lisa Lopez                 HR          $ 2632.30   $ 658.07   $ 210.58  $ 1763.64
+E0129  Sandra Wilson              HR          $ 7581.83   $ 758.18   $ 606.55  $ 6217.10
+E0130  Christopher Anderson       HR          $ 7031.23   $1406.25   $ 562.50  $ 5062.49
+E0131  Christopher Rodriguez      HR          $ 7181.11   $1579.84   $ 574.49  $ 5026.78
+E0132  Joseph Wilson              HR          $ 7284.99   $1602.70   $ 582.80  $ 5099.49
+E0133  Sandra Davis               HR          $ 7654.49   $ 765.45   $ 612.36  $ 6276.68
+E0134  Elizabeth Anderson         HR          $ 5986.36   $1496.59   $ 478.91  $ 4010.86
+E0135  James Thomas               HR          $ 7540.90   $ 942.61   $ 603.27  $ 5995.01
+E0136  Barbara Rodriguez          HR          $ 4980.75   $1095.76   $ 398.46  $ 3486.52
+E0137  Sarah Smith                HR          $ 4931.61   $ 616.45   $ 394.53  $ 3920.63
+E0138  Nancy Wilson               HR          $ 6202.99   $ 775.37   $ 496.24  $ 4931.37
+E0139  Christopher Thomas         HR          $ 4805.77   $ 480.58   $ 384.46  $ 3940.73
+E0140  Elizabeth Gonzalez         HR          $ 7841.05   $1176.16   $ 627.28  $ 6037.61
+E0141  Barbara Thomas             HR          $ 6465.76   $ 969.86   $ 517.26  $ 4978.64
+E0142  David Lopez                HR          $ 6621.72   $ 993.26   $ 529.74  $ 5098.72
+E0143  Elizabeth Brown            HR          $ 7002.28   $1050.34   $ 560.18  $ 5391.76
+E0144  Matthew Garcia             HR          $ 3784.02   $ 946.01   $ 302.72  $ 2535.30
+E0145  Nancy Jackson              HR          $ 8953.36   $1969.74   $ 716.27  $ 6267.36
+E0146  Patricia Miller            HR          $ 4070.90   $ 610.63   $ 325.67  $ 3134.59
+E0147  James Moore                HR          $ 3287.28   $ 328.73   $ 262.98  $ 2695.57
+E0148  Linda Jones                HR          $ 5338.59   $1067.72   $ 427.09  $ 3843.79
+E0149  Charles Martinez           HR          $ 5044.52   $1008.90   $ 403.56  $ 3632.05
+E0150  Mary Rodriguez             HR          $ 6873.51   $1374.70   $ 549.88  $ 4948.93
+E0151  Richard Thomas             HR          $ 2936.12   $ 734.03   $ 234.89  $ 1967.20
+E0152  Robert Jones               HR          $ 6487.85   $ 973.18   $ 519.03  $ 4995.65
+E0153  Patricia Moore             HR          $ 8234.22   $1811.53   $ 658.74  $ 5763.95
+E0154  Elizabeth Taylor           HR          $ 5149.09   $1029.82   $ 411.93  $ 3707.35
+E0155  Susan Martinez             HR          $ 5794.22   $ 579.42   $ 463.54  $ 4751.26
+E0156  Matthew Miller             HR          $ 6235.33   $ 935.30   $ 498.83  $ 4801.20
+E0157  Jennifer Davis             HR          $ 3049.70   $ 304.97   $ 243.98  $ 2500.75
+E0158  Susan Anderson             HR          $ 5938.67   $1187.73   $ 475.09  $ 4275.84
+E0159  Elizabeth Martinez         HR          $ 6320.37   $1580.09   $ 505.63  $ 4234.65
+E0160  Lisa Davis                 HR          $ 8180.57   $2045.14   $ 654.45  $ 5480.98
+E0161  Susan Brown                HR          $ 5439.68   $1359.92   $ 435.17  $ 3644.58
+E0162  Anthony Jones              HR          $ 3286.20   $ 410.77   $ 262.90  $ 2612.53
+E0163  Karen Jackson              HR          $ 7867.53   $1573.51   $ 629.40  $ 5664.62
+E0164  Daniel Martinez            HR          $ 7611.82   $1141.77   $ 608.95  $ 5861.10
+E0165  Jessica Anderson           HR          $ 3041.96   $ 304.20   $ 243.36  $ 2494.41
+E0166  Karen Rodriguez            HR          $ 3130.41   $ 391.30   $ 250.43  $ 2488.67
+E0167  Charles Smith              HR          $ 9076.80   $2269.20   $ 726.14  $ 6081.46
+E0168  Mary Garcia                HR          $ 5474.22   $1368.56   $ 437.94  $ 3667.73
+E0169  Jennifer Jackson           HR          $ 4969.99   $ 994.00   $ 397.60  $ 3578.39
+E0170  Barbara Wilson             HR          $ 4001.29   $1000.32   $ 320.10  $ 2680.86
+E0171  David Wilson               HR          $ 7551.57   $1132.74   $ 604.13  $ 5814.71
+E0172  Anthony Moore              HR          $ 2704.72   $ 270.47   $ 216.38  $ 2217.87
+E0173  David Brown                HR          $ 7942.88   $1588.58   $ 635.43  $ 5718.87
+E0174  Lisa Moore                 HR          $ 5541.44   $ 554.14   $ 443.32  $ 4543.98
+E0175  Barbara Martin             HR          $ 6598.74   $1649.69   $ 527.90  $ 4421.16
+E0176  Michael Rodriguez          HR          $ 6223.38   $ 933.51   $ 497.87  $ 4792.01
+E0177  Patricia Smith             HR          $ 8978.51   $1975.27   $ 718.28  $ 6284.96
+E0178  Daniel Garcia              HR          $ 4798.47   $ 479.85   $ 383.88  $ 3934.75
+E0179  John Davis                 HR          $ 7925.19   $ 792.52   $ 634.02  $ 6498.66
+E0180  Christopher Jones          HR          $ 5911.38   $1477.84   $ 472.91  $ 3960.62
+E0181  Daniel Rodriguez           HR          $ 4950.39   $ 990.08   $ 396.03  $ 3564.28
+E0182  Joseph Moore               HR          $ 3913.21   $ 489.15   $ 313.06  $ 3111.00
+E0183  Nancy Jones                HR          $ 8906.64   $1336.00   $ 712.53  $ 6858.11
+E0184  David Taylor               HR          $ 4044.76   $ 404.48   $ 323.58  $ 3316.70
+E0185  Anthony Jackson            HR          $ 5928.58   $1482.14   $ 474.29  $ 3972.15
+E0186  Joseph Moore               HR          $ 6189.31   $ 928.40   $ 495.15  $ 4765.77
+E0187  Richard Anderson           HR          $ 8511.17   $1063.90   $ 680.89  $ 6766.38
+E0188  Charles Gonzalez           HR          $ 3579.95   $ 715.99   $ 286.40  $ 2577.56
+E0189  Nancy Thomas               HR          $ 6501.89   $1300.38   $ 520.15  $ 4681.36
+E0190  Jessica Johnson            HR          $ 2942.84   $ 647.42   $ 235.43  $ 2059.99
+E0191  Sandra Anderson            HR          $ 2675.78   $ 535.16   $ 214.06  $ 1926.56
+E0192  Susan Jones                HR          $ 3200.30   $ 480.05   $ 256.02  $ 2464.23
+E0193  Daniel Gonzalez            HR          $ 7544.30   $1131.64   $ 603.54  $ 5809.11
+E0194  Richard Hernandez          HR          $ 6029.58   $1205.92   $ 482.37  $ 4341.30
+E0195  Karen Williams             HR          $ 3675.44   $ 918.86   $ 294.03  $ 2462.54
+E0196  Nancy Williams             HR          $ 5219.83   $ 521.98   $ 417.59  $ 4280.26
+E0197  Joseph Garcia              HR          $ 6114.99   $ 611.50   $ 489.20  $ 5014.29
+E0198  Betty Johnson              HR          $ 4151.28   $ 622.69   $ 332.10  $ 3196.49
+E0199  Elizabeth Taylor           HR          $ 5353.71   $1338.43   $ 428.30  $ 3586.98
+E0200  Jennifer Garcia            HR          $ 3049.84   $ 609.97   $ 243.99  $ 2195.89
+E0201  Jessica Jackson            HR          $ 3625.88   $ 725.18   $ 290.07  $ 2610.63
+E0202  Joseph Rodriguez           HR          $ 6999.70   $1399.94   $ 559.98  $ 5039.78
+================================================================================
+DEPARTMENT SUMMARY: HR          TOTAL PROCESSED: 97        
+  SUBTOTAL GROSS   : $ 560908.06
+  SUBTOTAL TAX     : $100679.41
+  SUBTOTAL PF      : $ 44872.64
+  SUBTOTAL NET     : $ 415356.00
+================================================================================
+E0300  Robert Williams            IT          $ 4857.67   $ 485.77   $ 388.61  $ 3983.29
+E0301  Anthony Taylor             IT          $ 3284.17   $ 492.63   $ 262.73  $ 2528.81
+E0302  Robert Martin              IT          $ 4963.17   $ 620.40   $ 397.05  $ 3945.72
+E0303  Betty Garcia               IT          $ 6962.87   $ 696.29   $ 557.03  $ 5709.55
+E0304  Lisa Davis                 IT          $ 8577.45   $1887.04   $ 686.20  $ 6004.22
+E0305  Elizabeth Moore            IT          $ 3778.50   $ 755.70   $ 302.28  $ 2720.52
+E0306  Lisa Jackson               IT          $ 9361.94   $1872.39   $ 748.96  $ 6740.60
+E0307  Matthew Gonzalez           IT          $ 5000.18   $1000.04   $ 400.01  $ 3600.13
+E0308  Betty Martin               IT          $ 3207.39   $ 481.11   $ 256.59  $ 2469.69
+E0309  Sandra Lopez               IT          $ 6919.85   $ 691.98   $ 553.59  $ 5674.27
+E0310  Sandra Brown               IT          $ 4306.07   $ 538.26   $ 344.49  $ 3423.33
+E0311  Mark Taylor                IT          $ 2980.31   $ 596.06   $ 238.42  $ 2145.82
+E0312  Anthony Anderson           IT          $ 7253.25   $ 725.33   $ 580.26  $ 5947.67
+E0313  Richard Taylor             IT          $ 4393.38   $ 878.68   $ 351.47  $ 3163.23
+E0314  Elizabeth Smith            IT          $ 4838.28   $ 483.83   $ 387.06  $ 3967.39
+E0315  Betty Jones                IT          $ 3297.26   $ 494.59   $ 263.78  $ 2538.89
+E0316  Matthew Thomas             IT          $ 4336.17   $ 433.62   $ 346.89  $ 3555.66
+E0317  William Miller             IT          $ 8981.87   $1976.01   $ 718.55  $ 6287.31
+E0318  Thomas Wilson              IT          $ 3068.15   $ 460.22   $ 245.45  $ 2362.47
+E0319  Patricia Johnson           IT          $ 4768.13   $1192.03   $ 381.45  $ 3194.65
+E0320  Joseph Williams            IT          $ 3677.69   $ 735.54   $ 294.22  $ 2647.94
+E0321  James Taylor               IT          $ 5612.20   $1403.05   $ 448.98  $ 3760.17
+E0322  Susan Smith                IT          $ 6856.98   $ 857.12   $ 548.56  $ 5451.30
+E0323  Jennifer Williams          IT          $ 5737.06   $ 860.56   $ 458.96  $ 4417.54
+E0324  Sarah Taylor               IT          $ 6951.88   $1529.41   $ 556.15  $ 4866.32
+E0325  Richard Thomas             IT          $ 2769.05   $ 553.81   $ 221.52  $ 1993.72
+E0326  Nancy Smith                IT          $ 4444.72   $ 444.47   $ 355.58  $ 3644.67
+E0327  Nancy Brown                IT          $ 7939.12   $1984.78   $ 635.13  $ 5319.21
+E0328  Robert Johnson             IT          $ 4771.08   $ 715.66   $ 381.69  $ 3673.73
+E0329  Anthony Anderson           IT          $ 8670.77   $1734.15   $ 693.66  $ 6242.95
+E0330  Betty Jones                IT          $ 2641.44   $ 528.29   $ 211.32  $ 1901.84
+E0331  Michael Johnson            IT          $ 7205.49   $ 720.55   $ 576.44  $ 5908.50
+E0332  Thomas Gonzalez            IT          $ 8746.25   $1924.18   $ 699.70  $ 6122.38
+E0333  Mary Miller                IT          $ 4552.09   $ 455.21   $ 364.17  $ 3732.71
+E0334  William Brown              IT          $ 7710.60   $1542.12   $ 616.85  $ 5551.63
+E0335  Mark Gonzalez              IT          $ 4907.78   $ 613.47   $ 392.62  $ 3901.68
+E0336  Barbara Taylor             IT          $ 4717.70   $ 471.77   $ 377.42  $ 3868.51
+E0337  John Wilson                IT          $ 6444.78   $ 805.60   $ 515.58  $ 5123.60
+E0338  David Brown                IT          $ 2938.07   $ 734.52   $ 235.05  $ 1968.51
+E0339  Joseph Martin              IT          $ 7772.74   $ 971.59   $ 621.82  $ 6179.33
+E0341  William Johnson            IT          $ 2983.78   $ 745.94   $ 238.70  $ 1999.13
+E0342  Thomas Garcia              IT          $ 9173.80   $1146.73   $ 733.90  $ 7293.17
+E0343  Mary Jones                 IT          $ 2911.65   $ 727.91   $ 232.93  $ 1950.80
+E0344  Richard Jackson            IT          $ 3054.06   $ 381.76   $ 244.32  $ 2427.98
+E0345  Barbara Lopez              IT          $ 5251.66   $ 525.17   $ 420.13  $ 4306.36
+E0346  Thomas Lopez               IT          $ 4554.91   $1138.73   $ 364.39  $ 3051.79
+E0347  Patricia Smith             IT          $ 7542.60   $1508.52   $ 603.41  $ 5430.67
+E0348  Margaret Moore             IT          $ 3662.05   $ 549.31   $ 292.96  $ 2819.78
+E0349  Michael Martin             IT          $ 3662.84   $ 732.57   $ 293.03  $ 2637.24
+E0350  Robert Williams            IT          $ 4886.49   $1221.62   $ 390.92  $ 3273.95
+E0351  Betty Hernandez            IT          $ 6617.96   $1654.49   $ 529.44  $ 4434.03
+E0352  Sarah Martinez             IT          $ 8249.31   $1031.16   $ 659.94  $ 6558.20
+E0353  Betty Lopez                IT          $ 5079.30   $ 507.93   $ 406.34  $ 4165.03
+E0354  Elizabeth Thomas           IT          $ 2823.81   $ 621.24   $ 225.90  $ 1976.66
+E0355  Joseph Moore               IT          $ 3036.46   $ 303.65   $ 242.92  $ 2489.90
+E0356  Richard Thomas             IT          $ 5493.54   $1098.71   $ 439.48  $ 3955.35
+E0357  Robert Hernandez           IT          $ 7112.18   $1422.44   $ 568.97  $ 5120.77
+E0358  Barbara Jones              IT          $ 9091.81   $2000.20   $ 727.34  $ 6364.27
+E0359  Jennifer Jones             IT          $ 5226.00   $ 522.60   $ 418.08  $ 4285.32
+E0360  Robert Martinez            IT          $ 3666.30   $ 549.95   $ 293.30  $ 2823.05
+E0361  Barbara Taylor             IT          $ 7333.00   $ 733.30   $ 586.64  $ 6013.06
+E0362  Christopher Moore          IT          $ 4464.78   $1116.20   $ 357.18  $ 2991.40
+E0363  Sarah Williams             IT          $ 6361.56   $ 795.19   $ 508.92  $ 5057.44
+E0364  Robert Garcia              IT          $ 6910.67   $1727.67   $ 552.85  $ 4630.15
+E0365  Anthony Jackson            IT          $ 2294.51   $ 229.45   $ 183.56  $ 1881.50
+E0366  Christopher Jackson        IT          $ 4924.11   $ 615.51   $ 393.93  $ 3914.67
+E0367  Susan Martin               IT          $ 7413.60   $1482.72   $ 593.09  $ 5337.79
+E0368  Linda Martinez             IT          $ 5459.01   $1364.75   $ 436.72  $ 3657.53
+E0369  Joseph Williams            IT          $ 7121.52   $ 890.19   $ 569.72  $ 5661.61
+E0370  Jessica Anderson           IT          $ 3512.54   $ 772.76   $ 281.00  $ 2458.78
+E0371  Sandra Hernandez           IT          $ 6669.80   $1000.47   $ 533.58  $ 5135.74
+E0372  Matthew Lopez              IT          $ 5304.03   $ 530.40   $ 424.32  $ 4349.31
+E0373  Joseph Brown               IT          $ 3498.43   $ 437.30   $ 279.87  $ 2781.26
+E0374  Mary Martinez              IT          $ 7963.36   $1751.94   $ 637.07  $ 5574.35
+E0375  Sandra Garcia              IT          $ 8156.70   $1794.47   $ 652.54  $ 5709.69
+E0376  Michael Garcia             IT          $ 5895.07   $1296.92   $ 471.61  $ 4126.55
+E0377  Mark Martinez              IT          $ 6045.11   $ 604.51   $ 483.61  $ 4956.99
+E0378  Joseph Davis               IT          $ 3133.93   $ 470.09   $ 250.71  $ 2413.13
+E0379  Linda Thomas               IT          $ 6897.61   $1724.40   $ 551.81  $ 4621.40
+E0380  Linda Moore                IT          $ 2483.89   $ 248.39   $ 198.71  $ 2036.79
+E0381  Mark Rodriguez             IT          $ 6260.46   $1252.09   $ 500.84  $ 4507.53
+E0382  Richard Johnson            IT          $ 6476.85   $ 809.61   $ 518.15  $ 5149.09
+E0383  Linda Williams             IT          $ 5803.61   $1160.72   $ 464.29  $ 4178.60
+E0384  William Martin             IT          $ 5609.99   $ 561.00   $ 448.80  $ 4600.19
+E0385  Richard Lopez              IT          $ 7661.76   $1149.26   $ 612.94  $ 5899.56
+E0386  Matthew Jones              IT          $ 4072.18   $ 895.88   $ 325.77  $ 2850.53
+E0387  Mary Johnson               IT          $ 2842.20   $ 710.55   $ 227.38  $ 1904.27
+E0388  Thomas Anderson            IT          $ 3200.82   $ 704.18   $ 256.07  $ 2240.57
+E0389  Margaret Martin            IT          $ 4724.47   $ 944.89   $ 377.96  $ 3401.62
+E0390  Charles Hernandez          IT          $ 6095.13   $1340.93   $ 487.61  $ 4266.59
+E0391  Daniel Jackson             IT          $ 4310.95   $ 431.10   $ 344.88  $ 3534.98
+E0392  Lisa Brown                 IT          $ 7498.60   $1649.69   $ 599.89  $ 5249.02
+E0393  Karen Thomas               IT          $ 4965.31   $1241.33   $ 397.22  $ 3326.76
+E0394  Charles Davis              IT          $ 6770.20   $1489.44   $ 541.62  $ 4739.14
+E0395  Thomas Martin              IT          $ 6416.63   $1283.33   $ 513.33  $ 4619.97
+E0396  Mary Jackson               IT          $ 7119.05   $ 711.90   $ 569.52  $ 5837.62
+================================================================================
+DEPARTMENT SUMMARY: IT          TOTAL PROCESSED: 96        
+  SUBTOTAL GROSS   : $ 525955.47
+  SUBTOTAL TAX     : $ 90660.96
+  SUBTOTAL PF      : $ 42076.44
+  SUBTOTAL NET     : $ 393218.08
+================================================================================
+E0397  David Wilson               OPS         $ 3427.96   $ 856.99   $ 274.24  $ 2296.73
+E0398  Thomas Martin              OPS         $ 8137.09   $2034.27   $ 650.97  $ 5451.85
+E0399  Daniel Jones               OPS         $ 5835.31   $1283.77   $ 466.82  $ 4084.72
+E0400  Thomas Gonzalez            OPS         $ 4905.43   $ 613.18   $ 392.43  $ 3899.82
+E0401  David Moore                OPS         $ 5033.10   $1258.27   $ 402.65  $ 3372.18
+E0402  Karen Thomas               OPS         $ 3902.70   $ 487.84   $ 312.22  $ 3102.65
+E0403  Linda Davis                OPS         $ 9074.92   $1361.24   $ 725.99  $ 6987.69
+E0404  Daniel Miller              OPS         $ 6905.59   $1381.12   $ 552.45  $ 4972.02
+E0405  Barbara Moore              OPS         $ 7918.06   $1979.51   $ 633.44  $ 5305.10
+E0406  Patricia Jackson           OPS         $ 6634.27   $1326.85   $ 530.74  $ 4776.68
+E0407  Matthew Jones              OPS         $ 4266.83   $ 640.02   $ 341.35  $ 3285.46
+E0408  Barbara Anderson           OPS         $ 6380.98   $1595.24   $ 510.48  $ 4275.26
+E0409  Michael Moore              OPS         $ 4525.41   $ 995.59   $ 362.03  $ 3167.79
+E0410  Robert Brown               OPS         $ 5718.95   $1258.17   $ 457.52  $ 4003.26
+E0411  Mary Taylor                OPS         $ 3186.14   $ 398.27   $ 254.89  $ 2532.98
+E0412  Susan Hernandez            OPS         $ 7094.10   $ 709.41   $ 567.53  $ 5817.16
+E0413  James Moore                OPS         $ 8914.20   $1114.27   $ 713.14  $ 7086.79
+E0414  Jessica Miller             OPS         $ 6995.50   $1049.32   $ 559.64  $ 5386.53
+E0415  Christopher Johnson        OPS         $ 9302.33   $ 930.23   $ 744.19  $ 7627.91
+E0416  Elizabeth Moore            OPS         $ 6912.43   $ 691.24   $ 552.99  $ 5668.19
+E0417  Mark Garcia                OPS         $ 8563.97   $ 856.40   $ 685.12  $ 7022.45
+E0418  Jennifer Martinez          OPS         $ 8355.72   $ 835.57   $ 668.46  $ 6851.69
+E0419  Karen Brown                OPS         $ 8322.94   $1248.44   $ 665.84  $ 6408.66
+E0420  Christopher Moore          OPS         $ 6159.17   $ 769.90   $ 492.73  $ 4896.54
+E0421  William Miller             OPS         $ 7331.99   $1099.80   $ 586.56  $ 5645.63
+E0422  Christopher Rodriguez      OPS         $ 7527.58   $ 752.76   $ 602.21  $ 6172.62
+E0423  Betty Martinez             OPS         $ 6158.40   $ 769.80   $ 492.67  $ 4895.92
+E0424  Sandra Gonzalez            OPS         $ 6741.18   $1483.06   $ 539.29  $ 4718.83
+E0425  Richard Brown              OPS         $ 3741.97   $ 467.75   $ 299.36  $ 2974.86
+E0426  Margaret Davis             OPS         $ 2577.07   $ 515.41   $ 206.17  $ 1855.49
+E0427  Matthew Rodriguez          OPS         $ 9485.88   $1422.88   $ 758.87  $ 7304.13
+E0428  James Rodriguez            OPS         $ 5637.58   $1409.40   $ 451.01  $ 3777.18
+E0429  Lisa Brown                 OPS         $ 5833.64   $ 729.20   $ 466.69  $ 4637.74
+E0430  Margaret Martinez          OPS         $ 6547.40   $1636.85   $ 523.79  $ 4386.76
+E0431  Karen Davis                OPS         $ 3782.26   $ 472.78   $ 302.58  $ 3006.89
+E0432  Joseph Martin              OPS         $ 5213.23   $1303.31   $ 417.06  $ 3492.86
+E0433  Matthew Moore              OPS         $ 7810.51   $ 976.31   $ 624.84  $ 6209.36
+E0434  Lisa Martin                OPS         $ 8442.34   $ 844.23   $ 675.39  $ 6922.72
+E0435  Thomas Lopez               OPS         $ 2504.77   $ 551.05   $ 200.38  $ 1753.34
+E0436  Anthony Moore              OPS         $ 9131.92   $1141.49   $ 730.55  $ 7259.88
+E0437  Robert Garcia              OPS         $ 4189.42   $ 921.67   $ 335.15  $ 2932.59
+E0438  Lisa Miller                OPS         $ 6917.44   $1383.49   $ 553.40  $ 4980.56
+E0439  Joseph Johnson             OPS         $ 5561.71   $1223.58   $ 444.94  $ 3893.20
+E0441  Nancy Smith                OPS         $ 5166.57   $ 516.66   $ 413.33  $ 4236.59
+E0442  Charles Williams           OPS         $ 2787.49   $ 418.12   $ 223.00  $ 2146.37
+E0443  Sarah Johnson              OPS         $ 7669.88   $ 766.99   $ 613.59  $ 6289.30
+E0444  Linda Wilson               OPS         $ 4149.42   $ 518.68   $ 331.95  $ 3298.79
+E0445  Barbara Gonzalez           OPS         $ 4778.28   $ 955.66   $ 382.26  $ 3440.36
+E0446  Lisa Moore                 OPS         $ 2932.54   $ 439.88   $ 234.60  $ 2258.06
+E0447  Sarah Gonzalez             OPS         $ 4980.04   $1245.01   $ 398.40  $ 3336.63
+E0448  Matthew Smith              OPS         $ 9869.15   $1973.83   $ 789.53  $ 7105.79
+E0449  Susan Moore                OPS         $ 4843.50   $ 605.44   $ 387.48  $ 3850.58
+E0450  Barbara Jones              OPS         $ 4248.31   $1062.08   $ 339.86  $ 2846.37
+E0451  Mary Wilson                OPS         $ 5714.77   $ 571.48   $ 457.18  $ 4686.11
+E0452  John Brown                 OPS         $ 5943.08   $1188.62   $ 475.45  $ 4279.01
+E0453  Elizabeth Johnson          OPS         $ 4955.47   $ 619.43   $ 396.44  $ 3939.60
+E0454  Matthew Johnson            OPS         $ 3540.12   $ 531.02   $ 283.21  $ 2725.89
+E0455  David Jackson              OPS         $ 5776.22   $1444.05   $ 462.10  $ 3870.07
+E0456  Linda Jones                OPS         $ 8533.69   $1877.41   $ 682.70  $ 5973.58
+E0457  Linda Rodriguez            OPS         $ 3036.72   $ 668.08   $ 242.94  $ 2125.70
+E0458  Christopher Wilson         OPS         $ 6116.91   $ 611.69   $ 489.35  $ 5015.87
+E0459  Betty Taylor               OPS         $ 4299.59   $ 859.92   $ 343.97  $ 3095.71
+E0460  Linda Gonzalez             OPS         $ 3572.56   $ 785.96   $ 285.80  $ 2500.79
+E0461  Sandra Davis               OPS         $ 4255.51   $1063.88   $ 340.44  $ 2851.19
+E0462  Margaret Johnson           OPS         $ 6725.43   $1345.09   $ 538.03  $ 4842.31
+E0463  Robert Gonzalez            OPS         $ 3574.93   $ 446.87   $ 285.99  $ 2842.07
+E0464  Margaret Anderson          OPS         $ 7647.43   $ 764.74   $ 611.79  $ 6270.89
+E0465  Mary Rodriguez             OPS         $ 4668.29   $1027.02   $ 373.46  $ 3267.80
+E0466  Sandra Williams            OPS         $ 4340.34   $ 954.88   $ 347.23  $ 3038.24
+E0467  Michael Thomas             OPS         $ 3358.80   $ 503.82   $ 268.70  $ 2586.28
+E0468  Michael Miller             OPS         $ 9518.04   $ 951.80   $ 761.44  $ 7804.79
+E0469  Margaret Davis             OPS         $ 6711.68   $1677.92   $ 536.93  $ 4496.82
+E0470  Margaret Davis             OPS         $ 6142.73   $ 921.41   $ 491.42  $ 4729.91
+E0471  Sarah Lopez                OPS         $ 4746.03   $ 711.90   $ 379.68  $ 3654.45
+E0472  Joseph Brown               OPS         $ 7587.13   $1896.78   $ 606.97  $ 5083.37
+E0473  Margaret Miller            OPS         $ 4764.49   $ 952.90   $ 381.16  $ 3430.44
+E0474  Sandra Davis               OPS         $ 7421.20   $ 742.12   $ 593.70  $ 6085.39
+E0475  Margaret Jackson           OPS         $ 5618.41   $1123.68   $ 449.47  $ 4045.25
+E0476  Michael Hernandez          OPS         $ 3935.23   $ 865.75   $ 314.82  $ 2754.66
+E0477  Sarah Hernandez            OPS         $ 4652.85   $ 930.57   $ 372.23  $ 3350.05
+E0478  Joseph Garcia              OPS         $ 6250.07   $ 937.51   $ 500.01  $ 4812.55
+E0479  Nancy Moore                OPS         $ 5368.20   $1181.00   $ 429.46  $ 3757.74
+E0481  Matthew Smith              OPS         $ 4366.69   $1091.67   $ 349.34  $ 2925.68
+E0482  Daniel Jones               OPS         $ 2627.43   $ 578.03   $ 210.19  $ 1839.20
+E0483  Mary Martin                OPS         $ 6847.58   $1506.47   $ 547.81  $ 4793.30
+E0484  James Smith                OPS         $ 4658.13   $ 931.63   $ 372.65  $ 3353.85
+E0485  Thomas Rodriguez           OPS         $ 5714.43   $ 857.16   $ 457.15  $ 4400.11
+E0486  Anthony Wilson             OPS         $ 6190.60   $ 773.83   $ 495.25  $ 4921.53
+E0487  Thomas Jones               OPS         $ 4125.16   $ 907.54   $ 330.01  $ 2887.62
+E0488  Anthony Lopez              OPS         $ 3800.82   $ 760.16   $ 304.07  $ 2736.59
+E0489  Richard Anderson           OPS         $ 5705.95   $1426.49   $ 456.48  $ 3822.98
+E0490  Lisa Williams              OPS         $ 6568.37   $1642.09   $ 525.47  $ 4400.81
+E0491  John Gonzalez              OPS         $ 4517.81   $ 993.92   $ 361.42  $ 3162.47
+E0492  Christopher Smith          OPS         $ 7270.46   $ 727.05   $ 581.64  $ 5961.78
+E0493  Christopher Hernandez      OPS         $ 5627.18   $ 562.72   $ 450.17  $ 4614.29
+E0494  Elizabeth Miller           OPS         $ 8761.31   $2190.33   $ 700.90  $ 5870.07
+E0495  William Johnson            OPS         $ 8593.48   $2148.37   $ 687.48  $ 5757.63
+E0496  Charles Johnson            OPS         $ 3088.48   $ 463.27   $ 247.08  $ 2378.13
+E0497  Charles Jones              OPS         $ 6455.64   $1613.91   $ 516.45  $ 4325.28
+E0498  Linda Garcia               OPS         $ 6485.50   $1426.81   $ 518.84  $ 4539.85
+================================================================================
+DEPARTMENT SUMMARY: OPS         TOTAL PROCESSED: 100       
+  SUBTOTAL GROSS   : $ 583215.47
+  SUBTOTAL TAX     : $102041.04
+  SUBTOTAL PF      : $ 46657.24
+  SUBTOTAL NET     : $ 434517.20
+================================================================================
+E0203  John Anderson              SALES       $ 8426.77   $1853.89   $ 674.14  $ 5898.74
+E0204  Daniel Rodriguez           SALES       $ 5270.79   $ 790.62   $ 421.66  $ 4058.51
+E0205  Sandra Thomas              SALES       $ 3336.16   $ 667.23   $ 266.89  $ 2402.04
+E0206  Charles Martinez           SALES       $ 8071.78   $1210.77   $ 645.74  $ 6215.27
+E0207  William Smith              SALES       $ 6029.56   $1507.39   $ 482.36  $ 4039.81
+E0208  Margaret Martin            SALES       $ 7446.33   $1116.95   $ 595.71  $ 5733.67
+E0209  Karen Lopez                SALES       $ 4084.91   $ 510.61   $ 326.79  $ 3247.51
+E0210  Lisa Jones                 SALES       $ 6198.25   $1549.56   $ 495.86  $ 4152.82
+E0211  Linda Anderson             SALES       $ 2861.28   $ 429.19   $ 228.90  $ 2203.19
+E0212  John Martinez              SALES       $ 4042.16   $ 808.43   $ 323.37  $ 2910.35
+E0213  Robert Moore               SALES       $ 8816.77   $1322.52   $ 705.34  $ 6788.92
+E0214  Margaret Rodriguez         SALES       $ 7759.19   $1163.88   $ 620.74  $ 5974.58
+E0215  Nancy Hernandez            SALES       $ 6451.35   $1290.27   $ 516.11  $ 4644.97
+E0216  Matthew Davis              SALES       $ 8683.74   $2170.93   $ 694.70  $ 5818.10
+E0217  Sandra Moore               SALES       $ 4267.86   $ 853.57   $ 341.43  $ 3072.86
+E0218  Sarah Brown                SALES       $ 5778.33   $1444.58   $ 462.27  $ 3871.48
+E0219  Charles Gonzalez           SALES       $ 6610.79   $ 991.62   $ 528.86  $ 5090.31
+E0220  Jessica Smith              SALES       $ 6747.16   $1484.38   $ 539.77  $ 4723.01
+E0221  Elizabeth Williams         SALES       $ 6922.14   $1384.43   $ 553.77  $ 4983.94
+E0222  Christopher Wilson         SALES       $ 2936.42   $ 293.64   $ 234.91  $ 2407.86
+E0223  Jessica Brown              SALES       $ 3048.11   $ 670.59   $ 243.85  $ 2133.68
+E0224  Joseph Lopez               SALES       $ 7745.97   $1936.49   $ 619.68  $ 5189.80
+E0225  Susan Jackson              SALES       $ 6459.75   $ 807.47   $ 516.78  $ 5135.50
+E0226  Anthony Thomas             SALES       $ 5683.62   $ 852.54   $ 454.69  $ 4376.38
+E0227  Michael Anderson           SALES       $ 4713.03   $ 589.13   $ 377.04  $ 3746.86
+E0228  Lisa Lopez                 SALES       $ 5258.93   $1314.73   $ 420.71  $ 3523.48
+E0229  Richard Rodriguez          SALES       $ 3411.42   $ 341.14   $ 272.91  $ 2797.37
+E0230  Lisa Miller                SALES       $ 5195.64   $1143.04   $ 415.65  $ 3636.95
+E0231  Betty Hernandez            SALES       $ 4805.46   $ 600.68   $ 384.44  $ 3820.34
+E0232  Michael Williams           SALES       $ 7861.35   $1729.50   $ 628.91  $ 5502.95
+E0233  Michael Davis              SALES       $ 5424.06   $ 678.01   $ 433.93  $ 4312.13
+E0234  James Rodriguez            SALES       $ 7911.25   $ 988.91   $ 632.90  $ 6289.44
+E0235  William Garcia             SALES       $ 2692.81   $ 269.28   $ 215.42  $ 2208.10
+E0236  Barbara Davis              SALES       $ 5741.75   $ 574.17   $ 459.34  $ 4708.23
+E0237  Mary Jones                 SALES       $ 5864.32   $1290.15   $ 469.15  $ 4105.03
+E0238  Jessica Anderson           SALES       $ 6964.46   $1532.18   $ 557.16  $ 4875.12
+E0239  Joseph Taylor              SALES       $ 3861.94   $ 849.63   $ 308.95  $ 2703.36
+E0240  Linda Anderson             SALES       $ 6125.15   $ 612.52   $ 490.01  $ 5022.62
+E0241  Sandra Gonzalez            SALES       $ 5474.32   $ 547.43   $ 437.95  $ 4488.94
+E0242  John Williams              SALES       $ 3903.77   $ 487.97   $ 312.30  $ 3103.50
+E0243  William Martin             SALES       $ 6906.83   $1519.50   $ 552.55  $ 4834.78
+E0244  Richard Martin             SALES       $ 6458.34   $1291.67   $ 516.67  $ 4650.01
+E0245  Susan Brown                SALES       $ 8495.84   $ 849.58   $ 679.67  $ 6966.59
+E0246  Nancy Miller               SALES       $ 5181.45   $ 647.68   $ 414.52  $ 4119.25
+E0247  Anthony Anderson           SALES       $ 4572.71   $1143.18   $ 365.82  $ 3063.71
+E0248  Susan Hernandez            SALES       $ 6416.89   $ 962.53   $ 513.35  $ 4941.01
+E0249  John Williams              SALES       $ 6958.63   $ 695.86   $ 556.69  $ 5706.07
+E0251  Sarah Moore                SALES       $ 4566.93   $ 456.69   $ 365.35  $ 3744.88
+E0252  Sandra Wilson              SALES       $ 7073.47   $1768.37   $ 565.88  $ 4739.23
+E0253  Karen Martinez             SALES       $ 4609.88   $1014.17   $ 368.79  $ 3226.92
+E0254  Robert Thomas              SALES       $ 4205.98   $ 420.60   $ 336.48  $ 3448.91
+E0255  Barbara Brown              SALES       $ 7176.14   $1578.75   $ 574.09  $ 5023.30
+E0256  Sandra Moore               SALES       $ 9698.97   $2133.77   $ 775.92  $ 6789.28
+E0257  James Martin               SALES       $ 7156.95   $1789.24   $ 572.56  $ 4795.16
+E0258  Jennifer Rodriguez         SALES       $ 6678.03   $1001.70   $ 534.24  $ 5142.08
+E0259  James Garcia               SALES       $ 8749.87   $1924.97   $ 699.99  $ 6124.91
+E0260  John Jones                 SALES       $ 7064.20   $ 706.42   $ 565.14  $ 5792.65
+E0261  Michael Gonzalez           SALES       $ 4776.60   $ 716.49   $ 382.13  $ 3677.98
+E0262  Linda Hernandez            SALES       $ 7018.60   $1544.09   $ 561.49  $ 4913.02
+E0263  Mark Johnson               SALES       $ 2838.47   $ 624.46   $ 227.08  $ 1986.93
+E0264  William Anderson           SALES       $ 7225.43   $1445.09   $ 578.03  $ 5202.31
+E0265  Susan Rodriguez            SALES       $ 3545.55   $ 780.02   $ 283.64  $ 2481.88
+E0266  Susan Brown                SALES       $ 4652.83   $1163.21   $ 372.23  $ 3117.40
+E0267  Thomas Martinez            SALES       $ 2717.37   $ 543.47   $ 217.39  $ 1956.50
+E0268  James Miller               SALES       $ 4602.28   $ 575.29   $ 368.18  $ 3658.81
+E0269  Matthew Rodriguez          SALES       $ 4044.10   $ 404.41   $ 323.53  $ 3316.16
+E0270  Nancy Wilson               SALES       $ 3584.46   $ 716.89   $ 286.76  $ 2580.81
+E0271  Thomas Moore               SALES       $ 7287.06   $1093.06   $ 582.96  $ 5611.03
+E0272  Sandra Johnson             SALES       $ 4739.34   $ 947.87   $ 379.15  $ 3412.32
+E0273  Charles Wilson             SALES       $ 6682.95   $1670.74   $ 534.64  $ 4477.58
+E0274  Linda Brown                SALES       $ 5140.28   $ 771.04   $ 411.22  $ 3958.02
+E0275  Joseph Lopez               SALES       $ 3071.80   $ 307.18   $ 245.74  $ 2518.88
+E0276  Charles Gonzalez           SALES       $ 5563.61   $1112.72   $ 445.09  $ 4005.80
+E0277  Elizabeth Hernandez        SALES       $ 6848.59   $ 684.86   $ 547.89  $ 5615.84
+E0278  Thomas Taylor              SALES       $ 3507.31   $ 526.10   $ 280.58  $ 2700.63
+E0279  Elizabeth Brown            SALES       $ 3522.65   $ 440.33   $ 281.81  $ 2800.50
+E0280  Robert Williams            SALES       $ 3856.41   $ 964.10   $ 308.51  $ 2583.80
+E0281  Matthew Jackson            SALES       $ 8322.71   $1664.54   $ 665.82  $ 5992.35
+E0282  Christopher Martin         SALES       $ 4212.24   $1053.06   $ 336.98  $ 2822.20
+E0283  Joseph Williams            SALES       $ 5238.05   $1309.51   $ 419.04  $ 3509.50
+E0284  Charles Johnson            SALES       $ 4755.76   $ 475.58   $ 380.46  $ 3899.73
+E0285  Joseph Johnson             SALES       $ 2373.16   $ 355.97   $ 189.85  $ 1827.34
+E0286  Karen Martin               SALES       $ 6392.67   $1278.53   $ 511.41  $ 4602.72
+E0287  Betty Johnson              SALES       $ 5375.62   $1182.64   $ 430.05  $ 3762.93
+E0288  David Martin               SALES       $ 5156.05   $ 644.51   $ 412.48  $ 4099.06
+E0289  Patricia Hernandez         SALES       $ 8394.31   $ 839.43   $ 671.54  $ 6883.33
+E0290  Mary Davis                 SALES       $ 7665.60   $1533.12   $ 613.25  $ 5519.23
+E0291  Karen Garcia               SALES       $ 4949.49   $ 742.42   $ 395.96  $ 3811.11
+E0292  Matthew Hernandez          SALES       $ 7376.39   $ 737.64   $ 590.11  $ 6048.64
+E0293  John Hernandez             SALES       $ 3101.89   $ 775.47   $ 248.15  $ 2078.27
+E0294  William Martin             SALES       $ 7871.61   $1180.74   $ 629.73  $ 6061.14
+E0295  Lisa Jones                 SALES       $ 9000.54   $1350.08   $ 720.04  $ 6930.42
+E0296  Robert Martin              SALES       $ 7270.99   $ 727.10   $ 581.68  $ 5962.21
+E0297  Richard Hernandez          SALES       $ 8762.69   $2190.67   $ 701.02  $ 5871.00
+E0298  John Wilson                SALES       $ 5566.70   $ 556.67   $ 445.34  $ 4564.69
+E0299  Jennifer Miller            SALES       $ 4162.57   $ 832.51   $ 333.01  $ 2997.05
+================================================================================
+DEPARTMENT SUMMARY: SALES       TOTAL PROCESSED: 96        
+  SUBTOTAL GROSS   : $ 552034.70
+  SUBTOTAL TAX     : $ 97026.35
+  SUBTOTAL PF      : $ 44162.78
+  SUBTOTAL NET     : $ 410845.58
+================================================================================

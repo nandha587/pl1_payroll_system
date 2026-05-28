@@ -1,0 +1,10 @@
+================================================================================
+AUDIT CONTROL TOTALS SUMMARY - BATCH RUN ID: PAY20260529A
+================================================================================
+INPUT RECORDS READ        : 500
+SUCCESSFULLY PROCESSED    : 493
+EXCEPTIONS / REJECTIONS   : 8
+TOTAL CUMULATIVE GROSS PAY: $  2812072.91
+TOTAL TAX DEDUCTED        : $   489695.77
+TOTAL NET PAYOUT TO EXP   : $  2097411.30
+================================================================================
