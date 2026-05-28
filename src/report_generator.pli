@@ -1,0 +1,81 @@
+/* REPORT_GENERATOR.PLI
+   PL/I sequential batch processing reporting engine.
+   Constructs print-ready detail rows and control-break aggregate blocks.
+   Demonstrates PL/I Picture formatting variables.
+*/
+REPORT_GENERATOR: PROCEDURE OPTIONS(REENTRANT);
+
+   /* FORMAT_DETAIL_LINE
+      Formats a single employee payroll transaction record for the output detail report.
+      Uses currency edit-picture masks to insert dollar signs and decimal points.
+   */
+   FORMAT_DETAIL_LINE: PROCEDURE(EMP_ID, EMP_NAME, DEPT_NAME, GROSS, TAX, PF, NET, OUT_LINE) RETURNS(CHAR(120));
+      DCL EMP_ID          CHAR(5) INONLY;
+      DCL EMP_NAME        CHAR(25) INONLY;
+      DCL DEPT_NAME       CHAR(10) INONLY;
+      DCL GROSS           FIXED DEC(9,2) INONLY;
+      DCL TAX             FIXED DEC(7,2) INONLY;
+      DCL PF              FIXED DEC(7,2) INONLY;
+      DCL NET             FIXED DEC(9,2) INONLY;
+      
+      DCL OUT_LINE        CHAR(120) OUTONLY;
+
+      /* Picture variables for formatted financial alignment */
+      DCL PIC_GROSS       PIC '$$$$$9.99';
+      DCL PIC_TAX         PIC '$$$$9.99';
+      DCL PIC_PF          PIC '$$$$9.99';
+      DCL PIC_NET         PIC '$$$$$9.99';
+
+      /* Move values to picture fields to apply masking formatting */
+      PIC_GROSS = GROSS;
+      PIC_TAX   = TAX;
+      PIC_PF    = PF;
+      PIC_NET   = NET;
+
+      /* Assemble tabular columns with strict character offsets */
+      OUT_LINE = EMP_ID || '  ' ||
+                 EMP_NAME || '  ' ||
+                 DEPT_NAME || '  ' ||
+                 PIC_GROSS || '  ' ||
+                 PIC_TAX || '  ' ||
+                 PIC_PF || '  ' ||
+                 PIC_NET;
+      RETURN(OUT_LINE);
+   END FORMAT_DETAIL_LINE;
+
+   /* FORMAT_DEPT_TOTAL
+      Formats the department sub-total summary printed during control break processing.
+   */
+   FORMAT_DEPT_TOTAL: PROCEDURE(DEPT_NAME, EMP_COUNT, SUM_GROSS, SUM_TAX, SUM_PF, SUM_NET, OUT_BLOCK) RETURNS(CHAR(250));
+      DCL DEPT_NAME       CHAR(10) INONLY;
+      DCL EMP_COUNT       FIXED BIN(31) INONLY;
+      DCL SUM_GROSS       FIXED DEC(11,2) INONLY;
+      DCL SUM_TAX         FIXED DEC(9,2) INONLY;
+      DCL SUM_PF          FIXED DEC(9,2) INONLY;
+      DCL SUM_NET         FIXED DEC(11,2) INONLY;
+      
+      DCL OUT_BLOCK       CHAR(250) OUTONLY;
+
+      /* Large-scale financial picture formats */
+      DCL PIC_GROSS       PIC '$$$$$$$9.99';
+      DCL PIC_TAX         PIC '$$$$$$9.99';
+      DCL PIC_PF          PIC '$$$$$$9.99';
+      DCL PIC_NET         PIC '$$$$$$$9.99';
+
+      PIC_GROSS = SUM_GROSS;
+      PIC_TAX   = SUM_TAX;
+      PIC_PF    = SUM_PF;
+      PIC_NET   = SUM_NET;
+
+      /* Output structured department subtotal block */
+      OUT_BLOCK = '================================================================================' || BYTE(10) ||
+                  'DEPARTMENT SUMMARY: ' || DEPT_NAME || '  TOTAL PROCESSED: ' || CHAR(EMP_COUNT) || BYTE(10) ||
+                  '  SUBTOTAL GROSS   : ' || PIC_GROSS || BYTE(10) ||
+                  '  SUBTOTAL TAX     : ' || PIC_TAX || BYTE(10) ||
+                  '  SUBTOTAL PF      : ' || PIC_PF || BYTE(10) ||
+                  '  SUBTOTAL NET     : ' || PIC_NET || BYTE(10) ||
+                  '================================================================================';
+      RETURN(OUT_BLOCK);
+   END FORMAT_DEPT_TOTAL;
+
+END REPORT_GENERATOR;

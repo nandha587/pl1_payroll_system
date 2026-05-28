@@ -1,0 +1,58 @@
+/* SALARY_CALCULATOR.PLI
+   PL/I sequential batch processing calculation engine.
+   Computes Base Pay, Overtime, Tax/Provident Fund Deductions, and Net salary.
+*/
+CALCULATE_SALARY: PROCEDURE(BASIC_SALARY, ATT_DAYS, OT_HOURS, TAX_PERCENT, GROSS_PAY, OT_PAY, TAX_DED, PF_DED, NET_PAY) OPTIONS(REENTRANT);
+   
+   /* Input Parameter Declarations */
+   DCL BASIC_SALARY    FIXED DEC(7,2) INONLY;
+   DCL ATT_DAYS        FIXED BIN(15) INONLY;
+   DCL OT_HOURS        FIXED BIN(15) INONLY;
+   DCL TAX_PERCENT     FIXED DEC(4,2) INONLY;
+   
+   /* Output Parameter Declarations */
+   DCL GROSS_PAY       FIXED DEC(9,2) OUTONLY;
+   DCL OT_PAY          FIXED DEC(7,2) OUTONLY;
+   DCL TAX_DED         FIXED DEC(7,2) OUTONLY;
+   DCL PF_DED          FIXED DEC(7,2) OUTONLY;
+   DCL NET_PAY         FIXED DEC(9,2) OUTONLY;
+   
+   /* Internal Working Variables (Mainframe Fixed-Decimal scaling) */
+   DCL BASE_PAY        FIXED DEC(9,2);
+   DCL HOURLY_RATE     FIXED DEC(7,2);
+   DCL STANDARD_DAYS   FIXED DEC(4,2) STATIC INITIAL(22.00);
+   DCL STANDARD_HOURS  FIXED DEC(5,2) STATIC INITIAL(176.00);
+   DCL OT_MULTIPLIER   FIXED DEC(3,2) STATIC INITIAL(1.50);
+   DCL PF_RATE         FIXED DEC(3,2) STATIC INITIAL(0.08); /* 8% Provident Fund contribution */
+
+   /* 1. Calculate Base Pay
+      Adjusts basic salary based on attendance days against standard 22 working days in a month.
+   */
+   BASE_PAY = BASIC_SALARY * (DEC(ATT_DAYS, 4, 2) / STANDARD_DAYS);
+
+   /* 2. Calculate Overtime Pay
+      Assumes a standard 176 working hours per month (22 days * 8 hours).
+      Overtime rate is basic hourly rate * 1.5.
+   */
+   IF OT_HOURS > 0 THEN DO;
+      HOURLY_RATE = BASIC_SALARY / STANDARD_HOURS;
+      OT_PAY = HOURLY_RATE * DEC(OT_HOURS, 4, 2) * OT_MULTIPLIER;
+   END;
+   ELSE DO;
+      OT_PAY = 0.00;
+   END;
+
+   /* 3. Compute Gross Salary */
+   GROSS_PAY = BASE_PAY + OT_PAY;
+
+   /* 4. Calculate Deductions
+      - Tax deduction is based on the employee's tax percent slab.
+      - Provident Fund / Insurance deduction is a flat 8.00% of gross earnings.
+   */
+   TAX_DED = GROSS_PAY * (TAX_PERCENT / 100.00);
+   PF_DED = GROSS_PAY * PF_RATE;
+
+   /* 5. Calculate Net Payout */
+   NET_PAY = GROSS_PAY - TAX_DED - PF_DED;
+
+END CALCULATE_SALARY;

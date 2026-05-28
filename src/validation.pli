@@ -1,0 +1,61 @@
+/* VALIDATION.PLI
+   PL/I sequential batch processing validation engine.
+   Handles bounds checking, format validation, and duplicate employee ID tracking.
+*/
+VALIDATE_RECORD: PROCEDURE(EMP_ID, BASIC_SALARY, TAX_PERCENT, OT_HOURS, ATT_DAYS, LAST_EMP_ID, STATUS) OPTIONS(REENTRANT);
+   
+   /* Input Parameter Declarations */
+   DCL EMP_ID          CHAR(5) INONLY;
+   DCL BASIC_SALARY    FIXED DEC(7,2) INONLY;
+   DCL TAX_PERCENT     FIXED DEC(4,2) INONLY;
+   DCL OT_HOURS        FIXED BIN(15) INONLY;
+   DCL ATT_DAYS        FIXED BIN(15) INONLY;
+   DCL LAST_EMP_ID     CHAR(5) INONLY;
+   
+   /* Output Parameter Declarations */
+   DCL STATUS          CHAR(7) OUTONLY;
+
+   /* Initialization */
+   STATUS = 'SUCCESS';
+
+   /* 1. Duplicate Employee ID Detection (Master / Attendance)
+      Tracks sequential duplicates by comparing the current key against the last matched key.
+   */
+   IF EMP_ID = LAST_EMP_ID THEN DO;
+      STATUS = 'ERR-103'; /* Duplicate employee ID detected */
+      RETURN;
+   END;
+
+   /* 2. Basic Salary Boundary Checks
+      Ensures that basic salary is a non-negative, non-zero value. Zoned decimal boundary checks.
+   */
+   IF BASIC_SALARY <= 0.00 THEN DO;
+      STATUS = 'ERR-201'; /* Zero or negative basic salary */
+      RETURN;
+   END;
+
+   /* 3. Tax Percentage Range Checks
+      Tax rate must be between 0.00% and 50.00%. Anything higher suggests an out-of-bounds error.
+   */
+   IF TAX_PERCENT < 0.00 | TAX_PERCENT > 50.00 THEN DO;
+      STATUS = 'ERR-202'; /* Out-of-bounds tax percentage */
+      RETURN;
+   END;
+
+   /* 4. Overtime Hours Validation
+      Ensures overtime hours are non-negative and do not exceed an operational ceiling of 80 hours/month.
+   */
+   IF OT_HOURS < 0 | OT_HOURS > 80 THEN DO;
+      STATUS = 'ERR-203'; /* Negative or excessive overtime hours */
+      RETURN;
+   END;
+
+   /* 5. Attendance Days Validation
+      Attendance days must be positive and not exceed standard monthly calendar constraints (31 days).
+   */
+   IF ATT_DAYS < 0 | ATT_DAYS > 31 THEN DO;
+      STATUS = 'ERR-204'; /* Out-of-bounds attendance days */
+      RETURN;
+   END;
+
+END VALIDATE_RECORD;
