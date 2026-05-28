@@ -1,0 +1,7 @@
+# Force GitHub Linguist to explicitly detect and classify .pli files as PL/I
+*.pli linguist-language=PL/I
+*.pli linguist-detectable=true
+
+# Exclude supporting Python scripts from language statistics to maintain 100% PL/I breakdown
+scripts/** linguist-vendored
+scripts/** linguist-documentation

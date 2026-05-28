@@ -1,0 +1,11 @@
+# Python Cache
+__pycache__/
+*.pyc
+
+# Temporary Checkpoint Recovery Files
+output/*.state
+output/checkpoint.state
+
+# Local execution logs (optional, but keep reports and totals as reference in the repo)
+# If you want to keep reference reports in GitHub, do not ignore payroll_report.txt.
+# We will keep report files committed as sample reference outcomes.
